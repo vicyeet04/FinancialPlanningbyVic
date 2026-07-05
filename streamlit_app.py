@@ -163,7 +163,7 @@ if add_purchases:
         purchase_value = st.number_input(f"Enter the value of purchase {i + 1} (Input Whole Number e.g. 100000): " , min_value = 0 , key = f"value_{i}" , value = 0 , step = 1 , format = "%d")
         purchase_age = st.number_input(f"Enter the age at which you plan to make purchase {i+1}" , min_value = current_age , max_value = life_expectancy , key = f"age_{i}" , step = 1 , format = "%d")
         loan_interest = st.number_input(f"Loan interest rate % for purchase {i + 1}", min_value=0.0, key=f"interest_{i}") / 100
-        loan_years = st.number_input(f"Loan length in years {i + 1}", min_value=1, max_value=50, key=f"loan_{i}" , value = 0 , step = 1 , format = "%d")
+        loan_years = st.number_input(f"Loan length in years {i + 1}", min_value=1, max_value=50, key=f"loan_{i}")
 
         big_purchases.append({
             "Name": purchase_name,
