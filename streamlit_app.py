@@ -37,14 +37,14 @@ try:
 except ValueError:
     st.error("Please enter a valid number.")
 
-current_assets = float(st.number_input("Enter your current assets (including bank savings, investments, assets etc): "))
+current_assets = float(st.number_input("Enter your current assets (including bank savings, investments, assets etc): " , min_value = 0 , value = 0 , step = 1 , format = "%d"))
 try:
     if current_assets < 0:
         st.error("Please enter a valid assets amount.")
 except ValueError:
     st.error("Please enter a valid number.")
 
-monthly_income = float(st.number_input("Enter your monthly salary (assuming gross salary i.e. pre-contribution to CPF, tax etc): "))
+monthly_income = float(st.number_input("Enter your monthly salary (assuming gross salary i.e. pre-contribution to CPF, tax etc): " , min_value = 0 , value = 0 , step = 1 , format = "%d"))
 try:
     if monthly_income < 0:
         st.error("Please enter a valid income amount.")
@@ -59,7 +59,7 @@ except ValueError:
     st.error("Please enter a valid number.")
 monthly_savings = monthly_income * savings_rate
 
-monthly_expenses = float(st.number_input("At current prices, how much monthly expenses do you need during retirement?"))
+monthly_expenses = float(st.number_input("At current prices, how much monthly expenses do you need during retirement?" , min_value = 0 , value = 0 , step = 1 , format = "%d"))
 try:
     if monthly_expenses < 0:
         st.error("Please enter a positive expense amount.")
@@ -160,10 +160,10 @@ if add_purchases:
     for i in range(num_purchases):
         st.subheader(f"Big Purchase {i+1}")
         purchase_name = st.text_input(f"Enter the name of purchase {i + 1}: " , key = f"name_{i}")
-        purchase_value = st.number_input(f"Enter the value of purchase {i + 1} (Input Whole Number e.g. 100000): " , min_value = 0 , key = f"value_{i}")
-        purchase_age = st.number_input(f"Enter the age at which you plan to make purchase {i+1}" , min_value = current_age , max_value = life_expectancy , key = f"age_{i}")
-        loan_interest = st.number_input(f"Loan interest rate % for purchase {i + 1}", min_value=0.0, key=f"interest_{i}") / 100
-        loan_years = st.number_input(f"Loan length in years {i + 1}", min_value=1, max_value=50, key=f"loan_{i}")
+        purchase_value = st.number_input(f"Enter the value of purchase {i + 1} (Input Whole Number e.g. 100000): " , min_value = 0 , key = f"value_{i}" , value = 0 , step = 1 , format = "%d")
+        purchase_age = st.number_input(f"Enter the age at which you plan to make purchase {i+1}" , min_value = current_age , max_value = life_expectancy , key = f"age_{i}" , value = 0 , step = 1 , format = "%d")
+        loan_interest = st.number_input(f"Loan interest rate % for purchase {i + 1}", min_value=0.0, key=f"interest_{i}" , value = 0 , step = 1 , format = "%d") / 100
+        loan_years = st.number_input(f"Loan length in years {i + 1}", min_value=1, max_value=50, key=f"loan_{i}" , value = 0 , step = 1 , format = "%d")
 
         big_purchases.append({
             "Name": purchase_name,
