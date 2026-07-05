@@ -22,14 +22,14 @@ Few key notes:
 
 
 st.header("Tell me more about your financial goals")
-current_age = int(st.number_input("Enter your current age (Input Whole Number e.g. 22): " , format = "%d))
+current_age = int(st.number_input("Enter your current age (Input Whole Number e.g. 22): ", format = "%d"))
 try:
     if current_age < 0:
         st.error("Please enter a valid age.")
 except ValueError:
     st.error("Please enter a valid number.")
 
-retirement_age = int(st.number_input("Enter your desired retirement age (Input Whole Number e.g. 45): " , format = %d))
+retirement_age = int(st.number_input("Enter your desired retirement age (Input Whole Number e.g. 45): " , format = "%d"))
 try:
     if retirement_age < current_age:
         st.error("Retirement age must be greater than your current age.")
