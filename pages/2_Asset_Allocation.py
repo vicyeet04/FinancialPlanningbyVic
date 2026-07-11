@@ -92,6 +92,8 @@ else:
     selected_tickers = [market_ticker_map[market] for market in selected_markets]
     if st.button("Run Random Portfolio Simulation"):
         close = download_asset_prices(selected_tickers)
+        first_data_date = close.index.min().strftime("%d %B %Y")
+        last_data_date = close.index.max().strftime("%d %B %Y")
         portfolio_df , best_portfolio = random_portfolio(close, target_required_return, num_portfolios=5000)
         st.scatter_chart(portfolio_df,
                          x = "Risk", 
@@ -123,3 +125,14 @@ else:
                      y = "Allocation (%)",
                      y_label = "Allocation (%)",
                      width = "stretch")
+        st.markdown(
+            f"""
+            Data: Historical Market Data retrieved from Yahoo Finance.
+            
+            Simulation uses weekly adjusted closing price data from {first_data_date} to {last_data_date}.
+            
+            The start date represents the earliest date with complete data available for all selected assets.
+            
+            Historical performance is not indicative of future performance.
+            """
+        )
